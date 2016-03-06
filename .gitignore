@@ -1,0 +1,6 @@
+﻿#Проигнорированные файлы в главном репозитории
+*.ini
+*.DS_Store
+**/*.DS_Store
+node_modules/*
+.sass-cache/*
