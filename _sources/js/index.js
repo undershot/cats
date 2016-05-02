@@ -1,3 +1,5 @@
+import test from './comp.js';
+
 'use strict';
 //   $(document).ready(function () {
 //     'use strict';
@@ -21,11 +23,13 @@
 //       });
 //     return false;
 //     });
-
+//  function  test() {
+// 	console.log('test!');
+// }
 //         $("img, a").on("dragstart", function (event) { event.preventDefault(); });
 //   });
 
-import test from './comp.js';
-
 test();
+
+// Доходит ли до сюда код
 

@@ -1,29 +1,42 @@
 'use strict'
-const gulp = require('gulp'),
-  minifyCss = require('gulp-minify-css'),
-  autoprefixer = require('gulp-autoprefixer'),
-  uglify = require('gulp-uglify'),
-  sass = require('gulp-sass'),
-  rename = require('gulp-rename'),
-  bs = require("browser-sync").create(),
-  babel = require('gulp-babel'),
-  webpackStream = require('webpack-stream'),
-  webpack = webpackStream.webpack,
-  ncp = require('ncp').ncp,
-  jshint = require('gulp-jshint'),
-  jade = require('gulp-jade');
+// все что относиться к самому галпу
+const gulp = require('gulp');
+const rename = require('gulp-rename');
 
+// все что относиться к html
+const jade = require('gulp-jade');
 
+// все что относиться к css
+const minifyCss = require('gulp-minify-css');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+
+// Все что относиться к js
+const uglify = require('gulp-uglify');
+const babel = require('gulp-babel');
+const webpackStream = require('webpack-stream');
+const webpack = webpackStream.webpack;
+const jshint = require('gulp-jshint');
+
+// Все что относиться к изображениям
 const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant');
 
-let imagesPath = {
-    from: __dirname + '/_sources/image/imageFromProd/*',
-    to: __dirname + '/_compile/dev/image/'
+// Браузер синк и модуль для копирования директорий
+const bs = require("browser-sync").create();
+const ncp = require('ncp').ncp;
+
+
+let env = 'preview';
+if (process.env.NODE_ENV === 'build') {
+	env = 'production';
+} else {
+  // Если это разработка запустить сервер 
+  gulp.task('Server', () => bs.init({server : `./_compile/${env}/`}) );
 }
 
 let webpackOptions = {
-  entry: './production/js/index.js',
+  entry: './_sources/js/index.js',
 
   module: {
 
@@ -34,26 +47,22 @@ let webpackOptions = {
   }	
 }
 
-let jsPath = {
-    from: __dirname + '/_sources/js/common.js',
-    to: __dirname + '/_compile/dev/'
+// Конструктор для создания пути для исходных файлов и скомпилированных файлов
+class CreatePath {
+  constructor (from, to) {
+    this.from = __dirname +  from;
+    this.to = to === undefined ? __dirname + `/_compile/${env}/` :  __dirname + to;
+  }
 }
 
-let libsPath = {
-  from: __dirname + '/_extra/libs/',
-  to: __dirname + '/_compile/dev/'
-}
+// Пути для всех основных файлов
+let jsPath = new CreatePath('/_sources/js/index.js');
+let libsPath = new CreatePath('/_extra/libs/');
+let scssPath = new CreatePath('/_sources/scss/style.scss');
+let jadePath = new CreatePath('/_sources/jade/index.jade');
+let imagesPath = new CreatePath('/_sources/image/imageFromProd/*', `/_compile/${env}/images/`);
 
-let scssPath = {
-  from: __dirname + '/_sources/scss/style.scss',
-  to: __dirname + '/_compile/dev/css'  
-}
-
-let jadePath = {
-    from: __dirname + '/_sources/jade/index.jade',
-    to: __dirname + '/_compile/dev/'
-}
-
+// опции для синтаксиса js 
 let optionForJshint = {
   // these directives can 
   // be found in the official 
@@ -75,10 +84,8 @@ let optionForJshint = {
   // promoted by JSLint
 }
 
-gulp.task('Server', () => bs.init({server : './production'}) );
-
-// task for change html
-gulp.task('jade',function(){
+// task для компиляции jade шаблонов
+gulp.task('jade', () => {
   gulp.src(jadePath.from)
   .pipe(jade({ pretty: true }))
   .pipe(gulp.dest(jadePath.to));
@@ -86,21 +93,44 @@ gulp.task('jade',function(){
   bs.reload();
 });
 
-gulp.task('scss', function () {
-  return gulp.src(scssPath.from)
-  .pipe(sass().on('error', sass.logError))
-  .pipe(rename('style.min.css'))
-  .pipe(gulp.dest(scssPath.to));
+// task для компиляции scss стилей
+gulp.task('scss', () => {
+  let _files = gulp.src(scssPath.from);
+
+  if (process.env.NODE_ENV !== 'build') {
+    _files.pipe(sass().on('error', sass.logError))
+    .pipe(rename('style.css'))
+    .pipe(gulp.dest(scssPath.to));
+
+    bs.reload();
+  } else {
+    _files.pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer('last 5 version'))
+    .pipe(rename('style.css'))
+    .pipe(gulp.dest(scssPath.to));
+  }
 });
 
 gulp.task('images', () => {
-    return gulp.src(imagesPath.from)
-        .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()]
-        }))
-        .pipe(gulp.dest(imagesPath.to));
+  let _files = gulp.src(imagesPath.from);
+
+  if (process.env.NODE_ENV !== 'build') {  
+    _files  
+    .pipe(imagemin({
+      progressive: true,
+      svgoPlugins: [{removeViewBox: false}],
+      use: [pngquant()]
+    }))
+    .pipe(gulp.dest(imagesPath.to));
+  } else {
+    _files  
+    .pipe(imagemin({
+      progressive: true,
+      svgoPlugins: [{removeViewBox: false}],
+      use: [pngquant()]
+    }))
+    .pipe(gulp.dest(imagesPath.to));	
+  }  
 });
 // gulp.task('sass', function () {
 //    	sass('production/css/style.sass')
@@ -122,49 +152,62 @@ gulp.task('images', () => {
 // });
 
 // task for JS 
-gulp.task('js', function() {
-  gulp.src(jsPath.from)
-  .pipe(webpackStream(webpackOptions))
-  .pipe(uglify())
-  .pipe(rename('bundle.js'))
-  .pipe(gulp.dest(jsPath.to));
+gulp.task('js', () => {
+  let _files = gulp.src(Path.from);
+
+  if (process.env.NODE_ENV !== 'build') { 
+    _files.pipe(jshint(optionForJshint))
+    .pipe(jshint.reporter('default'))
+    .pipe(webpackStream(webpackOptions))
+  //.pipe(uglify())
+    .pipe(rename('bundle.js'))
+    .pipe(gulp.dest(jsPath.to));
   
-  bs.reload();
+    bs.reload();
+  } else {
+    _files.pipe(jshint(optionForJshint))
+    .pipe(jshint.reporter('default'))
+    .pipe(webpackStream(webpackOptions))
+    .pipe(uglify())
+    .pipe(rename('bundle.js'))
+    .pipe(gulp.dest(jsPath.to));
+
+  }  
 });
 
-gulp.task('ecma2015', function() {
-   	gulp.src('production/js/controller.js')
-    //.pipe(babel({presets: ['es2015']}))
-    .pipe(uglify())
-    .pipe(rename('controller.min.js'))
-    .pipe(gulp.dest('production/js/'));
-    bs.reload();
-});
+// gulp.task('ecma2015', () => {
+//    	gulp.src('production/js/controller.js')
+//     //.pipe(babel({presets: ['es2015']}))
+//     .pipe(uglify())
+//     .pipe(rename('controller.min.js'))
+//     .pipe(gulp.dest('production/js/'));
+//     bs.reload();
+// });
  
 // build the main source into the min file 
-gulp.task('lint', function() {
-  return gulp.src('production/js/comp.js')
-    .pipe(jshint(optionForJshint))
-    .pipe(jshint.reporter('default'));
-});
+// gulp.task('lint', () => {
+//   return gulp.src('production/js/comp.js')
+//     .pipe(jshint(optionForJshint))
+//     .pipe(jshint.reporter('default'))
+// });
 
-gulp.task('test', function () {
-    gulp.task('link');
-});
+// gulp.task('test', () => {
+//     gulp.task('link');
+// });
 //taks for watch change files
-gulp.task('watch', function(){
+gulp.task('watch', () => {
 	//gulp.watch('production/css/style.sass', ['sass']);
 	gulp.watch(jadePath.from, ['jade']);
-    gulp.watch(jadePath.from + '/sections/', ['jade']);
+    gulp.watch(__dirname + '/_sources/jade/' + '/sections/*.jade', ['jade']);
 	//gulp.watch('production/js/common.js', ['js']);
     //gulp.watch('production/js/controller.js', ['ecma2015']);
 });
 
 // default task
-gulp.task('default', ['jade', 'scss', 'js', 'ecma2015', 'watch', 'Server']);
+gulp.task('default', ['jade', 'scss', 'js', 'ecma2015', 'watch' ]);
 
 // Таск для переноса библиотек в готовую сборку
-gulp.task('libsCompile', function () {
+gulp.task('libsCompile', () => {
   ncp(libsPath.from, libsPath.to, function (err) {
     if (err) {
       return console.error(err);
