@@ -1,6 +1,4 @@
 import test from './comp.js';
-
-'use strict';
 //   $(document).ready(function () {
 //     'use strict';
 // //Аякс отправка форм
