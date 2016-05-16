@@ -7,7 +7,7 @@ const gulp = require('gulp');
 const rename = require('gulp-rename');
 
 // все что относиться к html
-const jade = require('gulp-jade');
+const pug = require('gulp-jade');
 
 // все что относиться к css
 const minifyCss = require('gulp-minify-css');
@@ -97,7 +97,8 @@ let optionForJshint = {
 // task для компиляции jade шаблонов
 gulp.task('jade', () => {
   gulp.src(jadePath.from)
-  .pipe(jade({ pretty: true }))
+  .pipe(pug({ pretty: true }))
+  .pipe(rename('index.php'))
   .pipe(gulp.dest(jadePath.to));
 
   bs.reload();

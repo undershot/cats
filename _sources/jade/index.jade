@@ -1,17 +1,21 @@
 doctype html
-html(lang="ru")
+| 
+| <?php $lang = lang(); ?>
+html(lang!="<?php echo $lang;?>")
   head
-    include ./sections/header.jade
+    include sections/header.jade
   body
     //- example form
-    div.main
-      h3="Внимание"
-      p="Оставьте ваши контактные данные и наш консультант<br/>свяжется с вами в течении 30 секунд"
-      form#application(action="mail.php" method="POST" name="application")
-        input#applicationName(name="name" maxlength="20" placeholder="Введите ваше имя" required)
-        input#applicationEmail(name="email" type="email" maxlength="20" placeholder="Ваш E-mail" required)
-        input#applicationTelephone(name="telephone" type="Tel" maxlength="20" placeholder="Ваш телефон")
-        input(type="submit")
-        div#app="Отправить"
+    //
+      div.main
+        h3="Внимание"
+        p="Оставьте ваши контактные данные и наш консультант<br/>свяжется с вами в течении 30 секунд"
+        form#application(action="mail.php" method="POST" name="application")
+          input#applicationName(name="name" maxlength="20" placeholder="Введите ваше имя" required)
+          input#applicationEmail(name="email" type="email" maxlength="20" placeholder="Ваш E-mail" required)
+          input#applicationTelephone(name="telephone" type="Tel" maxlength="20" placeholder="Ваш телефон")
+          input(type="submit")
+          div#app="Отправить"
     div#mail.not_visible_mail
-    include ./sections/scripts.jade  
+
+    include sections/scripts.jade  
