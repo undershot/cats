@@ -1,5 +1,4 @@
 // @TODO перенести все файлы из старого формата проектов и весь код
-// @TODO придумать логику переноса в .php формат, посмотреть в сторону JadePHP
 
 'use strict'
 // все что относиться к самому галпу
@@ -65,7 +64,7 @@ class CreatePath {
 
 // Пути для всех основных файлов
 let jsPath = new CreatePath('/_sources/js/index.js');
-let libsPath = new CreatePath('/_extra/');
+let libsPath = new CreatePath('/_extra/libs');
 let scssPath = new CreatePath('/_sources/scss/style.scss');
 let jadePath = new CreatePath('/_sources/jade/index.jade');
 let imagesPath = new CreatePath('/_sources/image/imageFromProd/*', `/_compile/${env}/images/`);
@@ -93,7 +92,6 @@ let optionForJshint = {
 }
 
 
-// @TODO поискать html lint
 // task для компиляции jade шаблонов
 gulp.task('jade', () => {
   gulp.src(jadePath.from)
@@ -172,7 +170,6 @@ gulp.task('libsCompile', () => {
     if (err) {
       return console.error(err);
     }
-    console.log('done!');
   });
 });
 
