@@ -1,4 +1,5 @@
-import test from './comp.js';
+import SendFunc from './sendForm.js';
+import FloatMenu from './floatMenu.js';
 //   $(document).ready(function () {
 //     'use strict';
 // //Аякс отправка форм
@@ -27,7 +28,21 @@ import test from './comp.js';
 //         $("img, a").on("dragstart", function (event) { event.preventDefault(); });
 //   });
 
-test();
+//Плавающее меню
+new FloatMenu({ 
+    elem : document.getElementById('navigation'), 
+    height : 200,
+    first_class : 'menu_fixed_on_top',
+    second_class : 'float_menu'
+  }).init();
 
-// Доходит ли до сюда код
+
+// Отправка формы обратной связи скрипту для отправления по почте
+let data = {
+  name : 'input[name="name"]',
+  email : 'input[name="email"]',
+  telephone : 'input[name="telephone"]'
+};
+
+new SendFunc('application', data, 'mail');
 

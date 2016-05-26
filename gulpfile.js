@@ -1,6 +1,5 @@
-// @TODO перенести все файлы из старого формата проектов и весь код
-
 'use strict'
+
 // все что относиться к самому галпу
 const gulp = require('gulp');
 const rename = require('gulp-rename');
@@ -35,7 +34,10 @@ let env = process.env.NODE_ENV === 'build' ? 'build' : 'develop';
 gulp.task('server', () => { 
   // Если переменная окружения задана, то делаем сборку под продакшн
   if (env === 'develop') {
-    bs.init({server : `./_compile/${env}/`}) 
+    bs.init({
+      //server : `./_compile/${env}/`,
+      proxy: 'localhost:8000'
+    }) 
   }
 
   return;  
@@ -66,8 +68,8 @@ class CreatePath {
 let jsPath = new CreatePath('/_sources/js/index.js');
 let libsPath = new CreatePath('/_extra/libs');
 let scssPath = new CreatePath('/_sources/scss/style.scss');
-let jadePath = new CreatePath('/_sources/jade/index.jade');
-let imagesPath = new CreatePath('/_sources/image/imageFromProd/*', `/_compile/${env}/images/`);
+let jadePath = new CreatePath('/_sources/jade/*.jade');
+let imagesPath = new CreatePath('/_sources/image/imageFromProd/**/*', `/_compile/${env}/images/`);
 
 // опции для синтаксиса js 
 let optionForJshint = {
@@ -96,7 +98,9 @@ let optionForJshint = {
 gulp.task('jade', () => {
   gulp.src(jadePath.from)
   .pipe(pug({ pretty: true }))
-  .pipe(rename('index.php'))
+  .pipe(rename(function (path) {
+    path.extname = ".php"
+  }))
   .pipe(gulp.dest(jadePath.to));
 
   bs.reload();
