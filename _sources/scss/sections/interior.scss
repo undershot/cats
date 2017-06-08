@@ -1,0 +1,56 @@
+#interior {
+  background: #fff;
+  text-align: center;
+  overflow-x: hidden;
+
+  h3 {
+    color: $light_gray;
+    padding-top: 50px;
+    font-weight: 700;
+    font-size: 36px;
+  }
+
+  h2 {
+    color: $gray;
+    padding-bottom: 50px;
+    font-size: 60px;
+  }
+
+  .wrap_slider {
+    position: relative;
+
+    .left_grad {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      left: 0;
+    }
+
+    .right_grad {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      right: 0;
+    }
+
+    .left_arrow {
+      position: absolute;
+      top: 50%;
+      left: 30px;
+      cursor: pointer;
+    }
+
+    .right_arrow {
+      position: absolute;
+      top: 50%;
+      right: 30px;
+      cursor: pointer;
+    }
+  }
+
+  .slider {
+    width: 100%;
+
+    li img { width: 100%; }
+  }
+}

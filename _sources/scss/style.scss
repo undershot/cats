@@ -1,25 +1,41 @@
-@import 
-  'sass/_susy.scss',
-  'sections/reset.scss',
-  'sections/mail';
-$susy: (
-  columns: 12,
-  gutters: 1/2,
-  math: fluid,
-  gutter-position: outside,
-);
+/*
+Theme Name: catsAndRacoon theme
+Version: 1.0
+*/
 
-$container: 1170px;
-$container-float: 100%;
+$white: #fff;
+$gray: #474747;
+$light_gray: #c8c1be;
+$dark_gray: #686b6e;
+$pink: #d9325f;
+$dark_blue: #5ec4ef;
+$light_blue: #f2f9ff;
 
-.container-float{
-  @include container($container-float);
+@import
+  'sections/_reset',
+  'sections/_mail',
+  'sections/font',
+  'sections/nav',
+  'sections/main',
+  'sections/slide',
+  'sections/interior',
+  'sections/price',
+  'sections/map',
+  'sections/footer',
+  'sections/mobile_menu';
+
+body {
+  font-family: 'Hypatia Sans Pro';
+  background: #ccc;
+  padding-top: 100px;
 }
 
-.container{
-  @include container($container);
-}  
+.container {
+  max-width: 1170px;
+  margin: auto;
+}
 
-.test{
-  @include span(6);	
+.content {
+  max-width: 1170px;
+  margin: auto;
 }

@@ -1,0 +1,45 @@
+#map {
+  background: #fff;
+  text-align: center;
+
+  h3 {
+    color: $light_gray;
+    padding-top: 50px;
+    font-weight: 700;
+    font-size: 36px;
+  }
+
+  h2 {
+    color: $gray;
+    padding-bottom: 50px;
+    font-size: 60px;
+  }
+
+  #map_body {
+    height: 540px;
+  }
+
+  .wrap_map {
+    position: relative;
+
+    .balloon {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      z-index: 4;
+      background: #fff;
+      text-align: center;
+      padding: 15px 20px;
+      border-radius: 10px;
+
+      h5 {
+        font-size: 18px;
+        color: $gray;
+        padding-bottom: 25px;
+        font-weight: 700;
+      }
+    }
+  }
+}

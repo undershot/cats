@@ -1,0 +1,29 @@
+|<?php
+|$args = array(
+|  'post_type' => 'animals', //Тип поста
+|  'posts_per_page' => -1,//Постов на одной странице
+|  'category_name' => 'без-рубрики' //Категория постов
+|);
+|  $lastBlog = new WP_Query($args);
+|?>
+section#slider_animals
+  h4 Наши
+  h3
+    span(data-filter="cats").anim котики 
+    span и 
+    span(data-filter="racoons").anim енотики
+  ul.slider
+    |<?php
+    |  $lastBlog = new WP_Query($args); //Запрос ко всем постам подходящим под массив #args
+    |  if( $lastBlog->have_posts() ):
+    |    while($lastBlog->have_posts() ): $lastBlog->the_post(); ?>
+    |    <?php $name = types_render_field( "name_animal", array('raw' => true) );?>
+    |    <?php $age = types_render_field( "age_animal_last", array('raw' => true) );?>
+    |    <?php $photo = types_render_field( "photo_animal", array('raw' => true) );?>
+    |    <?php $type = types_render_field( "type_animal", array('raw' => true) );?>
+    li(style!="background-image: url(<?php echo $photo;?>); background-size: cover;" data-type!="<?php echo $type; ?>")
+      .dark
+        h5!="<?php echo $name; ?>"
+        h6!="<?php echo $age; ?>"
+    |<?php endwhile;
+    |  endif; ?>
