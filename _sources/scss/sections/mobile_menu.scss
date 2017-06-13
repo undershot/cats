@@ -8,7 +8,7 @@
   background: rgba(0, 0, 0, 0.8);
   transition: top 0.5s ease;
 
-  @media (min-width: 750px) {
+  @media (min-width: 970px) {
     display: none;
   }
 
@@ -24,7 +24,8 @@
     justify-content: center;
     height: calc(100vh - 10%);
 
-    a {
+    a,
+    .list_elem {
       text-decoration: none;
       color: #fff;
       font-weight: 700;
@@ -33,6 +34,21 @@
 
       &:hover {
         color: $pink;
+      }
+    }
+
+    .list_elem {
+      padding-bottom: 15px;
+    }
+
+    .list_elem footer {
+      display: flex;
+      flex-direction: column;
+
+      a {
+        padding-bottom: 15px;
+        font-size: 24px;
+        padding-left: 15px;
       }
     }
   }

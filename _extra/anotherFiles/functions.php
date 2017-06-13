@@ -7,11 +7,11 @@ function remove_menus(){
         __('Posts'),
         //__('Media'),
         __('Links'),
-        __('Pages'),
+        //__('Pages'),
         __('Appearance'),
         __('Tools'),
         __('Users'),
-        __('Settings'),
+        //__('Settings'),
         __('Comments'),
         __('Plugins')
     );

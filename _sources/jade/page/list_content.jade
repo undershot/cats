@@ -1,0 +1,21 @@
+|<?php 
+|  $args = array(
+|    'post_type' => 'news', 
+|    'posts_per_page' => -1
+|  );
+|?>
+
+section#list_content
+  ul.list
+    |<?php
+    |$lastBlog = new WP_Query($args);
+    |if( $lastBlog->have_posts() ):
+    |  while($lastBlog->have_posts() ): $lastBlog->the_post();
+    |    $thumbnail = types_render_field( "thumbnail", array('output' => 'raw') ); ?>
+    a(href!="<?php the_permalink(); ?>")
+      li(style!="background-image: url(<?php echo $thumbnail; ?>); background-size: cover;")
+        .darker
+          h3!="<?php the_title(); ?>"
+    | <?php
+    |  endwhile;
+    |endif; ?>

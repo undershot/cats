@@ -1,15 +1,17 @@
+| <?php 
+| /*
+|  Template Name: List page
+| */?>
 doctype html
 html(lang!="RU-ru")
   head
+    title!="<?php the_title();?>"
     include sections/header.jade
-  body
+  body 
     include sections/nav.jade
-    include sections/main.jade
-    include sections/slider.jade
-    include sections/interior.jade
-    include sections/price.jade
-    include sections/map.jade
+    include page/custom_head.jade
+    include page/list_content.jade 
     include sections/footer.jade
     include sections/mobile_menu.jade
-    script!="window.main = true"
+
     include sections/script.jade  

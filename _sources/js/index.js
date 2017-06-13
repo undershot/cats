@@ -37,43 +37,46 @@ function filterElements(filter) {
 }
 
 // Interior slider
-let $carousel = $('#interior .slider').slick({
-  arrows: false,
-  fade: true
-});
-
-$('#interior .wrap_slider .left_arrow').on('click', function () {
-  $carousel.slick('slickPrev');
-});
-
-$('#interior .wrap_slider .right_arrow').on('click', function () {
-  $carousel.slick('slickNext');
-});
-
-
-// Maps init
-ymaps.ready(init);
-var myMap,
-  myPlacemark;
-
-function init(){
-  myMap = new ymaps.Map("map_body", {
-    center: [55.798654, 37.529129],
-    zoom: 16
+if (window.main) {
+  let $carousel = $('#interior .slider').slick({
+    arrows: false,
+    fade: true,
+    adaptiveHeight: true
   });
 
-  myMap.behaviors.disable(['drag','scrollZoom']);
-
-  myPlacemark = new ymaps.Placemark([55.798654, 37.529129], null, {
-    iconLayout: 'default#image',
-    iconImageHref: `${location.origin}/wp-content/themes/cats/images/geo_map.png`,
-    iconImageSize: [42, 64],
-    iconImageOffset: [-39, -60]
+  $('#interior .wrap_slider .left_arrow').on('click', function () {
+    $carousel.slick('slickPrev');
   });
 
-  myMap.geoObjects.add(myPlacemark);
+  $('#interior .wrap_slider .right_arrow').on('click', function () {
+    $carousel.slick('slickNext');
+  });
 }
 
+// Maps init
+if (window.main) {
+  ymaps.ready(init);
+  var myMap,
+    myPlacemark;
+
+  function init(){
+    myMap = new ymaps.Map("map_body", {
+      center: [55.798654, 37.529129],
+      zoom: 16
+    });
+
+    myMap.behaviors.disable(['drag','scrollZoom']);
+
+    myPlacemark = new ymaps.Placemark([55.798654, 37.529129], null, {
+      iconLayout: 'default#image',
+      iconImageHref: `${location.origin}/wp-content/themes/cats/images/geo_map.png`,
+      iconImageSize: [42, 64],
+      iconImageOffset: [-39, -60]
+    });
+
+    myMap.geoObjects.add(myPlacemark);
+  }
+}
 // mobile menu funcs
 document.querySelector('#menu button').addEventListener('click', e => {
   document.querySelector('#mobile_menu').classList.add('active');

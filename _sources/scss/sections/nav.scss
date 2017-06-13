@@ -29,6 +29,63 @@
     }
   }
 
+  nav {
+    .subMenu {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        .list {
+          max-height: 500px;
+          border-top: 1px solid #474747;
+          margin-top: 0;
+        }
+      }
+
+      .menuItems {
+        display: flex;
+        align-items: center;
+      }
+
+      .list {
+        position: absolute;
+        top: 100px;
+        margin-top: -1px;
+        box-sizing: border-box;
+        background: #fff;
+        padding: 0 10px;
+        width: 181px;
+        border-top: 1px solid #fff;
+        border-radius: 0 0 15px 15px;
+        height: auto;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+
+        & a:first-child {
+          padding-top: 20px;
+        }
+
+        & a:last-child {
+          padding-bottom: 10px;
+        }
+
+        .list_elem {
+          padding-bottom: 15px;
+        }
+      }
+
+      .icon {
+        content: ' ';
+        width: 9px;
+        height: 5px;
+        background: url('images/sprite.png') no-repeat -8px -14px;
+        margin-left: 10px;
+      }
+    }
+  }
+
   nav a {
     text-decoration: none;
     color: $gray;
@@ -36,6 +93,7 @@
     padding: 0 25px;
     display: flex;
     align-items: center;
+    height: 100%;
 
     &:hover {
       color: $pink;

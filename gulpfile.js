@@ -60,7 +60,7 @@ let webpackOptions = {
 class CreatePath {
   constructor (from, to) {
     this.from = __dirname +  from;
-    this.to = to === undefined ? __dirname + `/../cats/` :  __dirname + `/../cats/` + to;
+    this.to = to === undefined ? __dirname + `/_compile/${env}/` :  __dirname + to;
   }
 }
 

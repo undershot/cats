@@ -1,7 +1,17 @@
 #menu
   .content
     nav
-      a(href="#") О нас
+      .subMenu
+        a(href="#")
+          .menuItems
+            span О нас
+            span.icon
+        .list
+          a(href="#"): .list_elem Правила посещений
+          a(href="#"): .list_elem Наши мероприятия
+          a(href="#"): .list_elem Наши новости
+          a(href="#"): .list_elem Полезные статьи
+          a(href="#"): .list_elem Акции
       a(href="#") Котики и енотики
       a(href="#") Цены
     a(href="#"): img(src!="<?php echo get_template_directory_uri();?>/images/logo.png").logo
