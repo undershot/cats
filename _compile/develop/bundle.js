@@ -42,9 +42,15 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
+
+	var _bornCalculate = __webpack_require__(1);
+
+	var _bornCalculate2 = _interopRequireDefault(_bornCalculate);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -97,6 +103,8 @@
 	  $('#interior .wrap_slider .right_arrow').on('click', function () {
 	    $carousel.slick('slickNext');
 	  });
+
+	  (0, _bornCalculate2.default)();
 	}
 
 	// Maps init
@@ -130,6 +138,72 @@
 	document.querySelector('#mobile_menu .closer').addEventListener('click', function (e) {
 	  document.querySelector('#mobile_menu').classList.remove('active');
 	});
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = initScript;
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	function bornCalculate(bornDate) {
+	  var year = ['год', 'года', 'лет'];
+	  var month = ['месяц', 'месяца', 'месяцев'];
+	  var _bornDate = new Date(bornDate * 1000);
+	  var nowDate = new Date();
+
+	  var result = '';
+	  var bornYear = nowDate.getFullYear() - _bornDate.getFullYear();
+	  var bornMonth = nowDate.getMonth() - _bornDate.getMonth() + 1;
+
+	  if (bornYear > 0) {
+	    switch (bornYear) {
+	      case 1:
+	        result = bornYear + ' ' + year[0];
+	        break;
+	      case 2:
+	      case 3:
+	      case 4:
+	        result = bornYear + ' ' + year[1];
+	        break;
+	      default:
+	        result = bornYear + ' ' + year[2];
+	        break;
+	    }
+	  }
+
+	  if (bornMonth > 0) {
+	    switch (bornMonth) {
+	      case 1:
+	        result += ' ' + bornMonth + ' ' + month[0];
+	        break;
+	      case 2:
+	      case 3:
+	      case 4:
+	        result += ' ' + bornMonth + ' ' + month[1];
+	        break;
+	      default:
+	        result += ' ' + bornMonth + ' ' + month[2];
+	        break;
+	    }
+	  }
+
+	  return result;
+	}
+
+	function initScript() {
+	  [].concat(_toConsumableArray(document.querySelectorAll('.data_age'))).forEach(function (el) {
+	    var _bornDate = el.dataset.age;
+
+	    el.textContent = bornCalculate(_bornDate);
+	  });
+	}
 
 /***/ })
 /******/ ]);

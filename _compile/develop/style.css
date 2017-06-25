@@ -96,6 +96,9 @@ table {
   width: 100%;
   height: 100px;
   z-index: 5; }
+  @media (max-width: 750px) {
+    #menu .logo {
+      width: 112px; } }
   #menu .content {
     display: flex;
     justify-content: space-around;
@@ -105,66 +108,60 @@ table {
         justify-content: space-between;
         padding: 0 30px;
         align-items: center; } }
-  #menu nav {
+  #menu .menu {
     height: 100px;
     display: flex;
     align-items: stretch; }
     @media (max-width: 970px) {
-      #menu nav {
+      #menu .menu {
         display: none; } }
-  #menu nav .subMenu {
-    position: relative;
-    display: flex;
-    align-items: center; }
-    #menu nav .subMenu:hover .list {
-      max-height: 500px;
-      border-top: 1px solid #474747;
-      margin-top: 0; }
-    #menu nav .subMenu .menuItems {
+    #menu .menu .menu-item {
+      text-decoration: none;
+      color: #474747;
+      font-size: 20px;
+      padding: 0 25px;
       display: flex;
-      align-items: center; }
-    #menu nav .subMenu .list {
-      position: absolute;
-      top: 100px;
-      margin-top: -1px;
-      box-sizing: border-box;
-      background: #fff;
-      padding: 0 10px;
-      width: 181px;
-      border-top: 1px solid #fff;
-      border-radius: 0 0 15px 15px;
-      height: auto;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease; }
-      #menu nav .subMenu .list a:first-child {
-        padding-top: 20px; }
-      #menu nav .subMenu .list a:last-child {
-        padding-bottom: 10px; }
-      #menu nav .subMenu .list .list_elem {
-        padding-bottom: 15px; }
-    #menu nav .subMenu .icon {
-      content: ' ';
-      width: 9px;
-      height: 5px;
-      background: url("images/sprite.png") no-repeat -8px -14px;
-      margin-left: 10px; }
-  #menu nav a {
-    text-decoration: none;
-    color: #474747;
-    font-size: 20px;
-    padding: 0 25px;
-    display: flex;
-    align-items: center;
-    height: 100%; }
-    #menu nav a:hover {
-      color: #d9325f; }
-    @media (max-width: 1770px) {
-      #menu nav a {
-        font-size: 18px; } }
-  @media (max-width: 1170px) {
-    #menu .logo {
-      width: 120px; } }
+      align-items: center;
+      height: 100%;
+      cursor: pointer;
+      position: relative; }
+      #menu .menu .menu-item.menu-item-has-children:hover .sub-menu {
+        max-height: 500px; }
+      #menu .menu .menu-item.menu-item-has-children a:first-child {
+        display: flex;
+        align-items: center; }
+      #menu .menu .menu-item.menu-item-has-children a:first-child::after {
+        content: ' ';
+        width: 9px;
+        display: block;
+        height: 5px;
+        background: url(images/sprite.png) no-repeat -8px -14px;
+        margin-left: 10px; }
+      #menu .menu .menu-item .sub-menu .menu-item a:first-child::after {
+        content: '';
+        background: none; }
+      #menu .menu .menu-item:hover {
+        color: #d9325f; }
+      @media (max-width: 1770px) {
+        #menu .menu .menu-item {
+          font-size: 18px; } }
+      #menu .menu .menu-item a {
+        color: inherit;
+        text-decoration: none;
+        display: block; }
+      #menu .menu .menu-item .sub-menu {
+        position: absolute;
+        background: #fff;
+        border-radius: 0 0 15px 15px;
+        top: 100%;
+        left: 0;
+        max-height: 0;
+        overflow: hidden;
+        height: auto;
+        transition: max-height 0.3s ease; }
+        #menu .menu .menu-item .sub-menu a {
+          padding-top: 15px;
+          padding-bottom: 15px; }
   #menu button {
     background: transparent;
     border: 2px solid;
@@ -174,7 +171,7 @@ table {
     font-size: 20px;
     padding: 10px 20px;
     border-radius: 10px;
-    margin-top: -14px;
+    margin-top: -12px;
     cursor: pointer; }
     @media (min-width: 970px) {
       #menu button {
@@ -293,7 +290,8 @@ table {
     flex-wrap: wrap; }
   #slider_animals ul li {
     margin: 0.5%;
-    width: 32%; }
+    width: 32%;
+    position: relative; }
     #slider_animals ul li::after {
       content: ' ';
       display: block;
@@ -304,6 +302,9 @@ table {
     #slider_animals ul li .dark {
       width: 100%;
       height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
       background: rgba(0, 0, 0, 0.5);
       display: flex;
       justify-content: center;
@@ -320,6 +321,9 @@ table {
       #slider_animals ul li .dark h6 {
         color: #c8c1be;
         font-size: 24px; }
+    @media (max-width: 750px) {
+      #slider_animals ul li .dark {
+        opacity: 1; } }
 
 #interior {
   background: #fff;
@@ -505,32 +509,36 @@ table {
       display: none; } }
   #mobile_menu.active {
     top: 0; }
-  #mobile_menu nav {
+  #mobile_menu .wrap {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding-left: 30px;
     justify-content: center;
     height: calc(100vh - 10%); }
-    #mobile_menu nav a,
-    #mobile_menu nav .list_elem {
-      text-decoration: none;
-      color: #fff;
+    #mobile_menu .wrap ul {
+      width: 100%; }
+    #mobile_menu .wrap ul li {
+      width: 100%; }
+    #mobile_menu .wrap ul li a {
+      display: block; }
+    #mobile_menu .wrap ul.sub-menu {
+      padding-left: 15px; }
+      #mobile_menu .wrap ul.sub-menu li {
+        padding-top: 15px;
+        padding-bottom: 0; }
+      #mobile_menu .wrap ul.sub-menu a {
+        font-size: 20px; }
+    #mobile_menu .wrap li {
       font-weight: 700;
       font-size: 30px;
-      padding-bottom: 35px; }
-      #mobile_menu nav a:hover,
-      #mobile_menu nav .list_elem:hover {
-        color: #d9325f; }
-    #mobile_menu nav .list_elem {
-      padding-bottom: 15px; }
-    #mobile_menu nav .list_elem footer {
-      display: flex;
-      flex-direction: column; }
-      #mobile_menu nav .list_elem footer a {
-        padding-bottom: 15px;
-        font-size: 24px;
-        padding-left: 15px; }
+      padding-bottom: 20px; }
+      #mobile_menu .wrap li a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 24px; }
+        #mobile_menu .wrap li a:hover {
+          color: #d9325f; }
   #mobile_menu .closer {
     float: right;
     margin-top: 15px;

@@ -1,22 +1,46 @@
 #menu
   .content
-    nav
-      .subMenu
-        a(href="#")
-          .menuItems
-            span О нас
-            span.icon
-        .list
-          a(href="#"): .list_elem Правила посещений
-          a(href="#"): .list_elem Наши мероприятия
-          a(href="#"): .list_elem Наши новости
-          a(href="#"): .list_elem Полезные статьи
-          a(href="#"): .list_elem Акции
-      a(href="#") Котики и енотики
-      a(href="#") Цены
-    a(href="#"): img(src!="<?php echo get_template_directory_uri();?>/images/logo.png").logo
-    nav
-      a(href="#") Сувениры
-      a(href="#") Партнеры
-      a(href="#") Контакты
+    |<?php wp_nav_menu( array(
+    |    	'theme_location'  => '',
+    |    	'menu'            => 'Левое меню', 
+    |    	'container'       => false, 
+    |    	'container_class' => '', 
+    |    	'container_id'    => '',
+    |    	'menu_class'      => 'menu', 
+    |    	'menu_id'         => '',
+    |    	'echo'            => true,
+    |    	'fallback_cb'     => 'wp_page_menu',
+    |    	'before'          => '',
+    |    	'after'           => '',
+    |    	'link_before'     => '',
+    |    	'link_after'      => '',
+    |    	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+    |    	'depth'           => 0,
+    |    	'walker'          => '',
+    |    ) );
+    |?>
+    a(href="/"): img(src!="<?php echo get_template_directory_uri();?>/images/logo.png").logo
+    //- nav
+    //-   a(href="#") Сувениры
+    //-   a(href="#") Партнеры
+    //-   a(href="#") Контакты
+    |<?php wp_nav_menu( array(
+    |    	'theme_location'  => '',
+    |    	'menu'            => 'Правое меню', 
+    |    	'container'       => false, 
+    |    	'container_class' => '', 
+    |    	'container_id'    => '',
+    |    	'menu_class'      => 'menu', 
+    |    	'menu_id'         => '',
+    |    	'echo'            => true,
+    |    	'fallback_cb'     => 'wp_page_menu',
+    |    	'before'          => '',
+    |    	'after'           => '',
+    |    	'link_before'     => '',
+    |    	'link_after'      => '',
+    |    	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+    |    	'depth'           => 0,
+    |    	'walker'          => '',
+    |    ) );
+    |?>
     button#menu_opener Меню

@@ -1,3 +1,5 @@
+import bornCalculate from './bornCalculate';
+
 [...document.querySelectorAll('#slider_animals .anim')]
   .forEach(el => {
     el.addEventListener('click', function () {
@@ -51,6 +53,8 @@ if (window.main) {
   $('#interior .wrap_slider .right_arrow').on('click', function () {
     $carousel.slick('slickNext');
   });
+
+  bornCalculate();
 }
 
 // Maps init

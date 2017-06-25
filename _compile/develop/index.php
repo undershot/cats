@@ -17,18 +17,43 @@
   <body>
     <div id="menu">
       <div class="content">
-        <nav>
-          <div class="subMenu"><a href="#">
-              <div class="menuItems"><span>О нас</span><span class="icon"></span></div></a>
-            <div class="list"><a href="#">
-                <div class="list_elem">Правила посещений</div></a><a href="#">
-                <div class="list_elem">Наши мероприятия</div></a><a href="#">
-                <div class="list_elem">Наши новости</div></a><a href="#">
-                <div class="list_elem">Полезные статьи</div></a><a href="#">
-                <div class="list_elem">Акции</div></a></div>
-          </div><a href="#">Котики и енотики</a><a href="#">Цены</a>
-        </nav><a href="#"><img src="<?php echo get_template_directory_uri();?>/images/logo.png" class="logo"></a>
-        <nav><a href="#">Сувениры</a><a href="#">Партнеры</a><a href="#">Контакты</a></nav>
+        <?php wp_nav_menu( array(
+           	'theme_location'  => '',
+           	'menu'            => 'Левое меню', 
+           	'container'       => false, 
+           	'container_class' => '', 
+           	'container_id'    => '',
+           	'menu_class'      => 'menu', 
+           	'menu_id'         => '',
+           	'echo'            => true,
+           	'fallback_cb'     => 'wp_page_menu',
+           	'before'          => '',
+           	'after'           => '',
+           	'link_before'     => '',
+           	'link_after'      => '',
+           	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+           	'depth'           => 0,
+           	'walker'          => '',
+           ) );
+        ?><a href="/"><img src="<?php echo get_template_directory_uri();?>/images/logo.png" class="logo"></a><?php wp_nav_menu( array(
+           	'theme_location'  => '',
+           	'menu'            => 'Правое меню', 
+           	'container'       => false, 
+           	'container_class' => '', 
+           	'container_id'    => '',
+           	'menu_class'      => 'menu', 
+           	'menu_id'         => '',
+           	'echo'            => true,
+           	'fallback_cb'     => 'wp_page_menu',
+           	'before'          => '',
+           	'after'           => '',
+           	'link_before'     => '',
+           	'link_after'      => '',
+           	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+           	'depth'           => 0,
+           	'walker'          => '',
+           ) );
+        ?>
         <button id="menu_opener">Меню</button>
       </div>
     </div>
@@ -65,13 +90,13 @@
          if( $lastBlog->have_posts() ):
            while($lastBlog->have_posts() ): $lastBlog->the_post(); ?>
            <?php $name = types_render_field( "name_animal", array('raw' => true) );?>
-           <?php $age = types_render_field( "age_animal_last", array('raw' => true) );?>
+           <?php $age = types_render_field( "age_animal_date", array('raw' => true) );?>
            <?php $photo = types_render_field( "photo_animal", array('raw' => true) );?>
            <?php $type = types_render_field( "type_animal", array('raw' => true) );?>
         <li style="background-image: url(<?php echo $photo;?>); background-size: cover;" data-type="<?php echo $type; ?>">
           <div class="dark">
             <h5><?php echo $name; ?></h5>
-            <h6><?php echo $age; ?></h6>
+            <h6 data-age="<?php echo $age; ?>" class="data_age"></h6>
           </div>
         </li><?php endwhile;
          endif; ?>
@@ -221,12 +246,46 @@
       </div>
     </section>
     <section id="mobile_menu"><img src="<?php echo get_template_directory_uri();?>/images/closer.png" class="closer">
-      <nav>
-        <div class="list_elem"> 
-          <header>О нас</header>
-          <footer><a href="#">Правила посещения</a><a href="#">Наши мероприятия</a><a href="#">Наши новости</a><a href="#">Полезные статьи</a><a href="#">Акции</a></footer>
-        </div><a href="#">Котики и енотики</a><a href="#">Цены</a><a href="#">Сувениры</a><a href="#">Партнеры</a><a href="#">Контакты</a>
-      </nav>
+      <div class="wrap">
+        <?php wp_nav_menu( array(
+           	'theme_location'  => '',
+           	'menu'            => 'Левое меню', 
+           	'container'       => false, 
+           	'container_class' => '', 
+           	'container_id'    => '',
+           	'menu_class'      => 'menu', 
+           	'menu_id'         => '',
+           	'echo'            => true,
+           	'fallback_cb'     => 'wp_page_menu',
+           	'before'          => '',
+           	'after'           => '',
+           	'link_before'     => '',
+           	'link_after'      => '',
+           	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+           	'depth'           => 0,
+           	'walker'          => '',
+           ) );
+        ?>
+        <?php wp_nav_menu( array(
+           	'theme_location'  => '',
+           	'menu'            => 'Правое меню', 
+           	'container'       => false, 
+           	'container_class' => '', 
+           	'container_id'    => '',
+           	'menu_class'      => 'menu', 
+           	'menu_id'         => '',
+           	'echo'            => true,
+           	'fallback_cb'     => 'wp_page_menu',
+           	'before'          => '',
+           	'after'           => '',
+           	'link_before'     => '',
+           	'link_after'      => '',
+           	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+           	'depth'           => 0,
+           	'walker'          => '',
+           ) );
+        ?>
+      </div>
     </section>
     <script>window.main = true</script>
     <script src="<?php echo get_template_directory_uri();?>/libs/jquery/dist/jquery.min.js"></script>

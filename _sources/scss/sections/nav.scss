@@ -7,6 +7,12 @@
   height: 100px;
   z-index: 5;
 
+  .logo {
+    @media (max-width: 750px) {
+      width: 112px;
+    }
+  }
+
   .content {
     display: flex;
     justify-content: space-around;
@@ -19,7 +25,7 @@
     }
   }
 
-  nav {
+  .menu {
     height: 100px;
     display: flex;
     align-items: stretch;
@@ -27,86 +33,73 @@
     @media (max-width: 970px) {
       display: none;
     }
-  }
 
-  nav {
-    .subMenu {
-      position: relative;
+    .menu-item {
+      text-decoration: none;
+      color: $gray;
+      font-size: 20px;
+      padding: 0 25px;
       display: flex;
       align-items: center;
+      height: 100%;
+      cursor: pointer;
+      position: relative;
 
-      &:hover {
-        .list {
+      &.menu-item-has-children:hover {
+        .sub-menu {
           max-height: 500px;
-          border-top: 1px solid #474747;
-          margin-top: 0;
         }
       }
 
-      .menuItems {
+      &.menu-item-has-children a:first-child {
         display: flex;
         align-items: center;
       }
 
-      .list {
+      &.menu-item-has-children a:first-child::after {
+        content: ' ';
+        width: 9px;
+        display: block;
+        height: 5px;
+        background: url(images/sprite.png) no-repeat -8px -14px;
+        margin-left: 10px;
+      }
+
+      .sub-menu .menu-item a:first-child::after {
+        content: '';
+        background: none;
+      }
+
+      &:hover {
+        color: $pink;
+      }
+
+      @media (max-width: 1770px) {
+        font-size: 18px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        display: block;
+      }
+
+      .sub-menu {
         position: absolute;
-        top: 100px;
-        margin-top: -1px;
-        box-sizing: border-box;
         background: #fff;
-        padding: 0 10px;
-        width: 181px;
-        border-top: 1px solid #fff;
         border-radius: 0 0 15px 15px;
-        height: auto;
+        top: 100%;
+        left: 0;
         max-height: 0;
         overflow: hidden;
+        height: auto;
         transition: max-height 0.3s ease;
 
-        & a:first-child {
-          padding-top: 20px;
-        }
-
-        & a:last-child {
-          padding-bottom: 10px;
-        }
-
-        .list_elem {
+        a {
+          padding-top: 15px;
           padding-bottom: 15px;
         }
       }
-
-      .icon {
-        content: ' ';
-        width: 9px;
-        height: 5px;
-        background: url('images/sprite.png') no-repeat -8px -14px;
-        margin-left: 10px;
-      }
-    }
-  }
-
-  nav a {
-    text-decoration: none;
-    color: $gray;
-    font-size: 20px;
-    padding: 0 25px;
-    display: flex;
-    align-items: center;
-    height: 100%;
-
-    &:hover {
-      color: $pink;
-    }
-
-    @media (max-width: 1770px) {
-      font-size: 18px;
-    }
-  }
-
-  .logo {
-    @media (max-width: 1170px) {
-      width: 120px;
     }
   }
 
@@ -119,7 +112,7 @@
     font-size: 20px;
     padding: 10px 20px;
     border-radius: 10px;
-    margin-top: -14px;
+    margin-top: -12px;
     cursor: pointer;
 
     @media (min-width: 970px) {

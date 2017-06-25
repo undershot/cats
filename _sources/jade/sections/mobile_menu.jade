@@ -1,16 +1,55 @@
 section#mobile_menu
   img(src!="<?php echo get_template_directory_uri();?>/images/closer.png").closer
-  nav
-    .list_elem 
-      header О нас
-      footer
-        a(href="#") Правила посещения
-        a(href="#") Наши мероприятия
-        a(href="#") Наши новости
-        a(href="#") Полезные статьи
-        a(href="#") Акции
-    a(href="#") Котики и енотики
-    a(href="#") Цены
-    a(href="#") Сувениры
-    a(href="#") Партнеры
-    a(href="#") Контакты
+  .wrap
+    |<?php wp_nav_menu( array(
+    |    	'theme_location'  => '',
+    |    	'menu'            => 'Левое меню', 
+    |    	'container'       => false, 
+    |    	'container_class' => '', 
+    |    	'container_id'    => '',
+    |    	'menu_class'      => 'menu', 
+    |    	'menu_id'         => '',
+    |    	'echo'            => true,
+    |    	'fallback_cb'     => 'wp_page_menu',
+    |    	'before'          => '',
+    |    	'after'           => '',
+    |    	'link_before'     => '',
+    |    	'link_after'      => '',
+    |    	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+    |    	'depth'           => 0,
+    |    	'walker'          => '',
+    |    ) );
+    |?>
+    |<?php wp_nav_menu( array(
+    |    	'theme_location'  => '',
+    |    	'menu'            => 'Правое меню', 
+    |    	'container'       => false, 
+    |    	'container_class' => '', 
+    |    	'container_id'    => '',
+    |    	'menu_class'      => 'menu', 
+    |    	'menu_id'         => '',
+    |    	'echo'            => true,
+    |    	'fallback_cb'     => 'wp_page_menu',
+    |    	'before'          => '',
+    |    	'after'           => '',
+    |    	'link_before'     => '',
+    |    	'link_after'      => '',
+    |    	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+    |    	'depth'           => 0,
+    |    	'walker'          => '',
+    |    ) );
+    |?>
+  //- nav
+  //-   .list_elem 
+  //-     header О нас
+  //-     footer
+  //-       a(href="http://kotikienotiki.ru/rules/") Правила посещения
+  //-       a(href="#") Наши мероприятия
+  //-       a(href="#") Наши новости
+  //-       a(href="#") Полезные статьи
+  //-       a(href="#") Акции
+  //-   a(href="#") Котики и енотики
+  //-   a(href="#") Цены
+  //-   a(href="#") Сувениры
+  //-   a(href="#") Партнеры
+  //-   a(href="#") Контакты

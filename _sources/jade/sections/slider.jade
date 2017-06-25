@@ -17,12 +17,12 @@ section#slider_animals
     |  if( $lastBlog->have_posts() ):
     |    while($lastBlog->have_posts() ): $lastBlog->the_post(); ?>
     |    <?php $name = types_render_field( "name_animal", array('raw' => true) );?>
-    |    <?php $age = types_render_field( "age_animal_last", array('raw' => true) );?>
+    |    <?php $age = types_render_field( "age_animal_date", array('raw' => true) );?>
     |    <?php $photo = types_render_field( "photo_animal", array('raw' => true) );?>
     |    <?php $type = types_render_field( "type_animal", array('raw' => true) );?>
     li(style!="background-image: url(<?php echo $photo;?>); background-size: cover;" data-type!="<?php echo $type; ?>")
       .dark
         h5!="<?php echo $name; ?>"
-        h6!="<?php echo $age; ?>"
+        h6(data-age!="<?php echo $age; ?>").data_age!=""
     |<?php endwhile;
     |  endif; ?>
