@@ -13,7 +13,7 @@ function remove_menus(){
         __('Users'),
         //__('Settings'),
         __('Comments'),
-        __('Plugins')
+        //__('Plugins')
     );
     end ($menu);
     while (prev($menu)){

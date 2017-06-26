@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/style.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/libs/fancybox/source/jquery.fancybox.css">
+    <title><?php the_title();?></title>
   </head>
   <body>
     <div id="menu">
@@ -63,8 +64,8 @@
       </div>
     </div>
     <section id="custom_head">
-      <header style="background-image: url(<?php echo types_render_field( 'thumbnail', array('output' => 'raw') ); ?>); background-size: cover;">
-        <h1><?php the_title(); ?></h1>
+      <header>
+        <h1><?php the_title();?></h1>
       </header>
     </section>
     <section id="custom_content">
@@ -125,6 +126,7 @@
     <script src="<?php echo get_template_directory_uri();?>/libs/fancybox/source/jquery.fancybox.pack.js"></script>
     <script src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
+    <script src="//vk.com/js/api/openapi.js" defer></script>
     <script src="<?php echo get_template_directory_uri();?>/bundle.js"></script>
   </body>
 </html>
