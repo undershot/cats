@@ -232,9 +232,7 @@ if (env === 'develop') {
 
 const getFtpConnection = () => {
 	return ftp.create( {
-		host: 'kotikienotiki.ru',
-		user: 'cl177787_merrick',
-		password: 'Abc123',
+		
 		parallel: 5,
 		log:      gutil.log
 	} );
