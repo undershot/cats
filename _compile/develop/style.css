@@ -389,7 +389,6 @@ table {
           margin: 0 auto;
           margin-bottom: 25px; } }
   #price .price_elem {
-    box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.1);
     border: 1px solid #f0f0f0;
     border-radius: 10px; }
     #price .price_elem .morning {

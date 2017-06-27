@@ -1,7 +1,7 @@
 
-<?php 
+<?php
 /*
- Template Name: List page
+ Template Name: Booking
 */?><!DOCTYPE html>
 <html lang="RU-ru">
   <head>
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/libs/fancybox/source/jquery.fancybox.css">
     <title><?php echo is_home() ? 'Котики-Енотики - антикафе' : the_title();?></title>
   </head>
-  <body> 
+  <body>
     <div id="menu">
       <div class="content">
         <?php wp_nav_menu( array(
@@ -68,28 +68,7 @@
         <h1><?php the_title();?></h1>
       </header>
     </section>
-    <?php 
-     $args = array(
-       'post_type' => 'news', 
-       'posts_per_page' => -1
-     );
-    ?>
-    <section id="list_content">
-      <ul class="list">
-        <?php
-        $lastBlog = new WP_Query($args);
-        if( $lastBlog->have_posts() ):
-         while($lastBlog->have_posts() ): $lastBlog->the_post();
-           $thumbnail = types_render_field( "thumbnail", array('output' => 'raw') ); ?><a href="<?php the_permalink(); ?>">
-          <li style="background-image: url(<?php echo $thumbnail; ?>); background-size: cover;">
-            <div class="darker">
-              <h3><?php the_title(); ?></h3>
-            </div>
-          </li></a><?php
-         endwhile;
-        endif; ?>
-      </ul>
-    </section>
+    <section id="list_content"><span>sdsdsds</span></section>
     <section id="footer">
       <div class="container"><a href="tel:+79163775227"><img src="<?php echo get_template_directory_uri();?>/images/phone_footer.png"></a>
         <h3>8 (916) 377-5227</h3>

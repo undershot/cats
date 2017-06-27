@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/style.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/libs/fancybox/source/jquery.fancybox.css">
-    <title><?php the_title();?></title>
+    <title><?php echo is_home() ? 'Котики-Енотики - антикафе' : the_title();?></title>
   </head>
   <body>
     <div id="menu">
