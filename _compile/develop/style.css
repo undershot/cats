@@ -427,7 +427,8 @@ table {
     justify-content: space-around;
     width: 80%;
     margin: auto;
-    padding-bottom: 40px; }
+    padding-bottom: 40px;
+    flex-direction: column; }
     @media (max-width: 970px) {
       #price .wrap_price {
         flex-direction: column; } }
@@ -554,7 +555,7 @@ table {
       height: 150px; } }
   #custom_head header h1 {
     font-size: 60px;
-    color: #fff;
+    color: #474747;
     position: absolute;
     bottom: 20px;
     text-align: center;
@@ -627,8 +628,8 @@ table {
         font-size: 20px; }
 
 body {
-  font-family: 'Hypatia Sans Pro';
-  background: #ccc;
+  font-family: 'Hypatia Sans Pro', sans-serif;
+  background: #fff;
   padding-top: 100px; }
 
 .container {

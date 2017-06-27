@@ -89,6 +89,7 @@
     width: 80%;
     margin: auto;
     padding-bottom: 40px;
+    flex-direction: column;
 
     @media (max-width: 970px) {
       flex-direction: column;

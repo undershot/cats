@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/style.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/libs/fancybox/source/jquery.fancybox.css">
+    <title><?php the_title();?></title>
   </head>
   <body>
     <div id="menu">
@@ -81,6 +82,7 @@
     );
      $lastBlog = new WP_Query($args);
     ?>
+    <div id="cats"></div>
     <section id="slider_animals">
       <h4>Наши</h4>
       <h3><span data-filter="cats" class="anim">котики </span><span>и </span><span data-filter="racoons" class="anim">енотики</span></h3>
@@ -128,65 +130,7 @@
       <div class="container">
         <div class="price_elem">
           <div class="morning">
-            <h3>10:00 - 12:00</h3>
-            <h4>будние дни</h4>
-            <div class="time_wrap">
-              <div class="time">
-                <h5>4р</h5>
-                <h4>минута</h4>
-              </div>
-              <div class="time">
-                <h5>240р</h5>
-                <h4>час</h4>
-              </div>
-            </div>
-          </div>
-          <div class="evening">
-            <h4>выходные праздники</h4>
-            <div class="time_wrap">
-              <div class="time">
-                <h5>6р</h5>
-                <h4>минута</h4>
-              </div>
-              <div class="time">
-                <h5>360р</h5>
-                <h4>час</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="price_elem">
-          <div class="morning">
-            <h3>12:00 - 17:00</h3>
-            <h4>будние дни</h4>
-            <div class="time_wrap">
-              <div class="time">
-                <h5>6р</h5>
-                <h4>минута</h4>
-              </div>
-              <div class="time">
-                <h5>360р</h5>
-                <h4>час</h4>
-              </div>
-            </div>
-          </div>
-          <div class="evening">
-            <h4>выходные праздники</h4>
-            <div class="time_wrap">
-              <div class="time">
-                <h5>7р</h5>
-                <h4>минута</h4>
-              </div>
-              <div class="time">
-                <h5>420р</h5>
-                <h4>час</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="price_elem">
-          <div class="morning">
-            <h3>17:00 - 22:00</h3>
+            <h3>10:00 - 22:00</h3>
             <h4>будние дни</h4>
             <div class="time_wrap">
               <div class="time">
@@ -218,7 +162,7 @@
         <div class="wrap_price">
           <div class="block_price">
             <h3>стоп-чек</h3>
-            <h4>1200р</h4>
+            <h4>1000р</h4>
           </div>
           <div class="block_price">
             <h3>скидки игровым компаниям</h3>
@@ -292,6 +236,7 @@
     <script src="<?php echo get_template_directory_uri();?>/libs/fancybox/source/jquery.fancybox.pack.js"></script>
     <script src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
+    <script src="//vk.com/js/api/openapi.js" defer></script>
     <script src="<?php echo get_template_directory_uri();?>/bundle.js"></script>
   </body>
 </html>
