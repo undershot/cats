@@ -1,11 +1,7 @@
 import bornCalculate from './bornCalculate';
 import vkApi from './vkApi';
 
-/*window.VK.init({
-  apiId: 5893806
-});*/
-
-// vkApi();
+vkApi();
 
 [...document.querySelectorAll('#slider_animals .anim')]
   .forEach(el => {

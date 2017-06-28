@@ -58,11 +58,7 @@
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	/*window.VK.init({
-	  apiId: 5893806
-	});*/
-
-	// vkApi();
+	(0, _vkApi2.default)();
 
 	[].concat(_toConsumableArray(document.querySelectorAll('#slider_animals .anim'))).forEach(function (el) {
 	  el.addEventListener('click', function () {
@@ -222,14 +218,20 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	exports.default = vkApi;
 	function vkApi() {
-
-	    alert(1);
-
-	    console.log('33');
+	  window.VK.init({
+	    apiId: 6092424
+	  });
+	  //
+	  window.VK.Api.call('wall.get', {
+	    owner_id: -144799026,
+	    query: '#приз'
+	  }, function (info) {
+	    return console.log(info);
+	  });
 	}
 
 /***/ })
