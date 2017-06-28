@@ -52,17 +52,9 @@
 
 	var _vkApi = __webpack_require__(2);
 
-	var _vkApi2 = _interopRequireDefault(_vkApi);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-	/*window.VK.init({
-	  apiId: 5893806
-	});*/
-
-	// vkApi();
 
 	[].concat(_toConsumableArray(document.querySelectorAll('#slider_animals .anim'))).forEach(function (el) {
 	  el.addEventListener('click', function () {
@@ -149,6 +141,10 @@
 	  document.querySelector('#mobile_menu').classList.remove('active');
 	});
 
+	if (window.news) {
+	  (0, _vkApi.vkApi)('#новости', _vkApi.html_func_news);
+	}
+
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {
@@ -222,14 +218,59 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
-	exports.default = vkApi;
-	function vkApi() {
+	exports.vkApi = vkApi;
+	exports.html_func_news = html_func_news;
+	function vkApi(query, html_func) {
+	  window.VK.init({
+	    apiId: 6092424
+	  });
 
-	    alert(1);
+	  window.VK.Api.call('wall.search', {
+	    owner_id: -144799026,
+	    query: query
+	  }, function (info) {
+	    var response = info.response;
 
-	    console.log('33');
+	    var data = {
+	      count: response[0],
+	      items: response.slice(1, response.length)
+	    };
+
+	    if (data.count > 0) {
+	      html_func(data.items);
+	    }
+
+	    console.log(data);
+	  });
+	}
+
+	function html_func_news(items) {
+	  var html = '';
+
+	  items.forEach(function (el) {
+	    var text = el.text;
+	    var reg = /\[(club144799026)\|(Котики-Енотики антикафе с животными)\]/g;
+	    text = text.replace(reg, replacer);
+	    html += '\n      <div class="post">\n        ' + text + '\n        ' + get_image(el) + '\n      </div>\n    ';
+	  });
+
+	  document.querySelector('#news_block').innerHTML = html;
+	}
+
+	function get_image(item) {
+	  var hasImg = item.attachment && item.attachment.photo && item.attachment.photo.src_big;
+
+	  if (hasImg) {
+	    return '<img src="' + hasImg + '" alt="news"/>';
+	  }
+
+	  return '';
+	}
+
+	function replacer(substr, p1, p2) {
+	  return '\n    <a href="https://vk.com/' + p1 + '">' + p2 + '</a>\n  ';
 	}
 
 /***/ })

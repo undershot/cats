@@ -142,8 +142,8 @@
     <script src="<?php echo get_template_directory_uri();?>/libs/jquery/dist/jquery.min.js"></script>
     <script src="<?php echo get_template_directory_uri();?>/libs/fancybox/source/jquery.fancybox.pack.js"></script>
     <script src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
-    <script src="//vk.com/js/api/openapi.js" defer></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru-RU"></script>
+    <script src="https://vk.com/js/api/openapi.js?146"></script>
     <script src="<?php echo get_template_directory_uri();?>/bundle.js"></script>
   </body>
 </html>

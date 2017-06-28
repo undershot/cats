@@ -626,6 +626,23 @@ table {
         color: #fff;
         font-size: 20px; }
 
+#news_block {
+  display: flex;
+  flex-wrap: wrap; }
+
+#news_block .post {
+  width: 100%;
+  padding: 15px; }
+  @media (min-width: 950px) {
+    #news_block .post {
+      width: 48%;
+      margin: 1%;
+      padding: 0; } }
+  @media (min-width: 1440px) {
+    #news_block .post {
+      width: 32%;
+      margin: 0.5%; } }
+
 body {
   font-family: 'Hypatia Sans Pro', sans-serif;
   background: #fff;

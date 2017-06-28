@@ -1,7 +1,7 @@
 
 <?php 
 /*
- Template Name: Single page
+ Template Name: News page
 */?><!DOCTYPE html>
 <html lang="RU-ru">
   <head>
@@ -18,9 +18,9 @@
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/style.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/libs/fancybox/source/jquery.fancybox.css">
-    <title><?php echo is_home() ? 'Котики-Енотики - антикафе' : the_title();?></title>
+    <title><?php the_title();?></title>
   </head>
-  <body>
+  <body> 
     <div id="menu">
       <div class="content">
         <?php wp_nav_menu( array(
@@ -68,11 +68,7 @@
         <h1><?php the_title();?></h1>
       </header>
     </section>
-    <section id="custom_content">
-      <footer>
-        <div class="text_content"><?php echo get_post_field('post_content', $post->ID); ?></div>
-      </footer>
-    </section>
+    <section id="news_block"></section>
     <section id="footer">
       <div class="container"><a href="tel:+79163775227"><img src="<?php echo get_template_directory_uri();?>/images/phone_footer.png"></a>
         <h3>8 (916) 377-5227</h3>
@@ -122,6 +118,7 @@
         ?>
       </div>
     </section>
+    <script>window.news = true;</script>
     <script src="<?php echo get_template_directory_uri();?>/libs/jquery/dist/jquery.min.js"></script>
     <script src="<?php echo get_template_directory_uri();?>/libs/fancybox/source/jquery.fancybox.pack.js"></script>
     <script src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
