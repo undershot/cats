@@ -1,0 +1,17 @@
+| <?php 
+| /*
+|  Template Name: News page
+| */?>
+doctype html
+html(lang!="RU-ru")
+  head
+    title!="<?php the_title();?>"
+    include sections/header.jade
+  body 
+    include sections/nav.jade
+    include page/custom_head.jade
+    section#news_block
+    include sections/footer.jade
+    include sections/mobile_menu.jade
+    script!="window.news = true;"
+    include sections/script.jade  

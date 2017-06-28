@@ -1,7 +1,8 @@
 import bornCalculate from './bornCalculate';
-import vkApi from './vkApi';
-
-vkApi();
+import {
+  vkApi,
+  html_func_news,
+} from './vkApi';
 
 [...document.querySelectorAll('#slider_animals .anim')]
   .forEach(el => {
@@ -92,3 +93,7 @@ document.querySelector('#menu button').addEventListener('click', e => {
 document.querySelector('#mobile_menu .closer').addEventListener('click', e => {
   document.querySelector('#mobile_menu').classList.remove('active');
 });
+
+if (window.news) {
+  vkApi('#новости', html_func_news);
+}
