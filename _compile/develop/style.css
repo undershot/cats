@@ -628,20 +628,29 @@ table {
 
 #news_block {
   display: flex;
-  flex-wrap: wrap; }
-
-#news_block .post {
-  width: 100%;
-  padding: 15px; }
-  @media (min-width: 950px) {
-    #news_block .post {
-      width: 48%;
-      margin: 1%;
-      padding: 0; } }
-  @media (min-width: 1440px) {
-    #news_block .post {
-      width: 32%;
-      margin: 0.5%; } }
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row; }
+  #news_block .post {
+    width: 28%;
+    border: 1px solid #e8e8e8;
+    color: #343434;
+    line-height: 20px;
+    flex-grow: 1;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 10px;
+    overflow: hidden; }
+    #news_block .post__image {
+      width: 100%;
+      transition: transform .15s; }
+      #news_block .post__image-wrapper {
+        max-height: 200px;
+        overflow: hidden; }
+    #news_block .post:hover .post__image {
+      transform: scale(1.2); }
+    #news_block .post__text {
+      padding: 15px; }
 
 body {
   font-family: 'Hypatia Sans Pro', sans-serif;

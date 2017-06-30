@@ -95,5 +95,5 @@ document.querySelector('#mobile_menu .closer').addEventListener('click', e => {
 });
 
 if (window.news) {
-  vkApi('#новости', html_func_news);
+  vkApi('#енот', html_func_news);
 }

@@ -142,7 +142,7 @@
 	});
 
 	if (window.news) {
-	  (0, _vkApi.vkApi)('#новости', _vkApi.html_func_news);
+	  (0, _vkApi.vkApi)('#енот', _vkApi.html_func_news);
 	}
 
 /***/ }),
@@ -218,59 +218,83 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	exports.vkApi = vkApi;
 	exports.html_func_news = html_func_news;
 	function vkApi(query, html_func) {
-	  window.VK.init({
-	    apiId: 6092424
-	  });
+	    window.VK.init({
+	        apiId: 6092424
+	    });
 
-	  window.VK.Api.call('wall.search', {
-	    owner_id: -144799026,
-	    query: query
-	  }, function (info) {
-	    var response = info.response;
+	    console.log('qa', query, window.VK.Api);
 
-	    var data = {
-	      count: response[0],
-	      items: response.slice(1, response.length)
-	    };
+	    var url = 'https://api.vk.com/method/wall.search?owner_id=-144799026&query=' + encodeURIComponent(query) + '&access_token=6acba4a46acba4a46acba4a4986a97522c66acb6acba4a4339889facb5280d2e572de4c';
 
-	    if (data.count > 0) {
-	      html_func(data.items);
-	    }
+	    $.ajax({
+	        url: url,
+	        dataType: 'jsonp',
+	        success: function success(info) {
+	            var response = info.response;
 
-	    console.log(data);
-	  });
+	            var data = {
+	                count: response[0],
+	                items: response.slice(1, response.length)
+	            };
+
+	            if (data.count > 0) {
+	                html_func(data.items);
+	            }
+	        }
+	    });
+	    /*
+	        window.VK.Api.call('wall.search', {
+	            owner_id: -144799026,
+	            query: query,
+	            access_token: '6acba4a46acba4a46acba4a4986a97522c66acb6acba4a4339889facb5280d2e572de4c'
+	        }, (info) => {
+	    
+	            console.log(info);
+	    
+	            const {response} = info;
+	            const data = {
+	                count: response[0],
+	                items: response.slice(1, response.length)
+	            };
+	    
+	            if (data.count > 0) {
+	                html_func(data.items);
+	            }
+	    
+	            console.log(data)
+	        });*/
 	}
 
 	function html_func_news(items) {
-	  var html = '';
+	    var html = '';
 
-	  items.forEach(function (el) {
-	    var text = el.text;
-	    var reg = /\[(club144799026)\|(Котики-Енотики антикафе с животными)\]/g;
-	    text = text.replace(reg, replacer);
-	    html += '\n      <div class="post">\n        ' + text + '\n        ' + get_image(el) + '\n      </div>\n    ';
-	  });
+	    items.forEach(function (el) {
+	        var text = el.text;
+	        var reg = /\[([^\[\]]+)\|([^\[\]]+)\]/g;
+	        text = text.replace(reg, replacer);
+	        html += '\n      <div class="post">\n        <div class="post__image-wrapper">' + get_image(el) + '</div>\n        <div class="post__text">' + text + '</div>\n      </div>\n    ';
+	    });
 
-	  document.querySelector('#news_block').innerHTML = html;
+	    document.querySelector('#news_block').innerHTML = html;
 	}
 
 	function get_image(item) {
-	  var hasImg = item.attachment && item.attachment.photo && item.attachment.photo.src_big;
+	    var hasImg = item.attachment && item.attachment.photo && item.attachment.photo.src_big;
 
-	  if (hasImg) {
-	    return '<img src="' + hasImg + '" alt="news"/>';
-	  }
+	    if (hasImg) {
+	        return '<img class="post__image" src="' + hasImg + '" alt="news"/>';
+	    }
 
-	  return '';
+	    return '';
 	}
 
 	function replacer(substr, p1, p2) {
-	  return '\n    <a href="https://vk.com/' + p1 + '">' + p2 + '</a>\n  ';
+	    return '\n    <a href="https://vk.com/' + p1 + '">' + p2 + '</a>\n  ';
 	}
 
 /***/ })

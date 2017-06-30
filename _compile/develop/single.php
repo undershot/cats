@@ -5,7 +5,7 @@
 */?><!DOCTYPE html>
 <html lang="RU-ru">
   <head>
-    <title><?php the_title();?></title>
+    <!-- title!="<?php the_title();?>"-->
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="Keywords" content="">
