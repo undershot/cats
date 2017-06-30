@@ -640,7 +640,32 @@ table {
     font-size: 16px;
     border-radius: 5px;
     margin: 10px;
-    overflow: hidden; }
+    overflow: hidden;
+    position: relative; }
+    #news_block .post__title {
+      font-size: 18px;
+      display: block; }
+    #news_block .post__link {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2;
+      transition: all .15s;
+      opacity: 0;
+      color: #fff;
+      font-size: 24px;
+      text-decoration: none;
+      text-align: center;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      display: flex; }
+    #news_block .post:hover .post__link {
+      opacity: 1; }
     #news_block .post__image {
       width: 100%;
       transition: transform .15s; }

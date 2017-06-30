@@ -247,37 +247,26 @@
 	            }
 	        }
 	    });
-	    /*
-	        window.VK.Api.call('wall.search', {
-	            owner_id: -144799026,
-	            query: query,
-	            access_token: '6acba4a46acba4a46acba4a4986a97522c66acb6acba4a4339889facb5280d2e572de4c'
-	        }, (info) => {
-	    
-	            console.log(info);
-	    
-	            const {response} = info;
-	            const data = {
-	                count: response[0],
-	                items: response.slice(1, response.length)
-	            };
-	    
-	            if (data.count > 0) {
-	                html_func(data.items);
-	            }
-	    
-	            console.log(data)
-	        });*/
 	}
 
 	function html_func_news(items) {
 	    var html = '';
 
 	    items.forEach(function (el) {
+
+	        console.log(el);
+
 	        var text = el.text;
 	        var reg = /\[([^\[\]]+)\|([^\[\]]+)\]/g;
 	        text = text.replace(reg, replacer);
-	        html += '\n      <div class="post">\n        <div class="post__image-wrapper">' + get_image(el) + '</div>\n        <div class="post__text">' + text + '</div>\n      </div>\n    ';
+	        text = text.replace(/#[^\s]+/g, '');
+	        text = text.replace(/^(.{200}[^\s]*).*/, "$1...");
+
+	        text = text.replace(/^(.+?)<br\s?\/?>/g, "<b class='post__title'>$1</b> <br><br>");
+
+	        var link = 'https://vk.com/wall' + el.from_id + '_' + el.id;
+
+	        html += '\n      <div class="post">\n        <a href="' + link + '" target="_blank" class="post__link">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</a>\n        <div class="post__image-wrapper">' + get_image(el) + '</div>\n        <div class="post__text">' + text + '</div>\n      </div>\n    ';
 	    });
 
 	    document.querySelector('#news_block').innerHTML = html;
