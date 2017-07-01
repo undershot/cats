@@ -145,6 +145,14 @@
 	  (0, _vkApi.vkApi)('#енот', _vkApi.html_func_news);
 	}
 
+	if (window.articles) {
+	  (0, _vkApi.vkApi)('#енот', _vkApi.html_func_news);
+	}
+
+	if (window.shares) {
+	  (0, _vkApi.vkApi)('#приз', _vkApi.html_func_news);
+	}
+
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {
@@ -260,13 +268,17 @@
 	        var reg = /\[([^\[\]]+)\|([^\[\]]+)\]/g;
 	        text = text.replace(reg, replacer);
 	        text = text.replace(/#[^\s]+/g, '');
-	        text = text.replace(/^(.{200}[^\s]*).*/, "$1...");
+	        text = text.replace(/^(.{250}[^\s]*).*/, "$1...");
 
-	        text = text.replace(/^(.+?)<br\s?\/?>/g, "<b class='post__title'>$1</b> <br><br>");
+	        text = text.replace(/^(.+?)<br\s?\/?>/g, "<b class='post__title'>$1</b> <br>");
+
+	        text = text.trim();
 
 	        var link = 'https://vk.com/wall' + el.from_id + '_' + el.id;
 
-	        html += '\n      <div class="post">\n        <a href="' + link + '" target="_blank" class="post__link">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</a>\n        <div class="post__image-wrapper">' + get_image(el) + '</div>\n        <div class="post__text">' + text + '</div>\n      </div>\n    ';
+	        var textElement = text ? '<div class="post__text">' + text + '</div>' : '';
+
+	        html += '\n      <div class="post' + (!text ? ' image-only' : '') + '">\n        <a href="' + link + '" target="_blank" class="post__link">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</a>\n        <div class="post__image-wrapper">' + get_image(el) + '</div>\n        ' + textElement + '\n      </div>\n    ';
 	    });
 
 	    document.querySelector('#news_block').innerHTML = html;

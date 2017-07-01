@@ -1,6 +1,6 @@
 | <?php 
 | /*
-|  Template Name: List page
+|  Template Name: Shares page
 | */?>
 doctype html
 html(lang!="RU-ru")
@@ -9,8 +9,8 @@ html(lang!="RU-ru")
   body 
     include sections/nav.jade
     include page/custom_head.jade
-    include page/list_content.jade 
+    section#news_block
     include sections/footer.jade
     include sections/mobile_menu.jade
-
+    script!="window.shares = true;"
     include sections/script.jade

@@ -36,17 +36,21 @@ export function html_func_news(items) {
         let reg = /\[([^\[\]]+)\|([^\[\]]+)\]/g;
         text = text.replace(reg, replacer);
         text = text.replace(/#[^\s]+/g, '');
-        text = text.replace(/^(.{200}[^\s]*).*/, "$1...");
+        text = text.replace(/^(.{250}[^\s]*).*/, "$1...");
 
-        text = text.replace(/^(.+?)<br\s?\/?>/g, "<b class='post__title'>$1</b> <br><br>");
+        text = text.replace(/^(.+?)<br\s?\/?>/g, "<b class='post__title'>$1</b> <br>");
+
+        text = text.trim();
 
         let link = `https://vk.com/wall${el.from_id}_${el.id}`;
 
+        let textElement = text ? `<div class="post__text">${text}</div>` : '';
+
         html += `
-      <div class="post">
+      <div class="post${!text ? ' image-only' : ''}">
         <a href="${link}" target="_blank" class="post__link">Подробнее</a>
         <div class="post__image-wrapper">${get_image(el)}</div>
-        <div class="post__text">${text}</div>
+        ${textElement}
       </div>
     `;
     });

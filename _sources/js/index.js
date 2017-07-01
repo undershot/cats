@@ -97,3 +97,11 @@ document.querySelector('#mobile_menu .closer').addEventListener('click', e => {
 if (window.news) {
   vkApi('#енот', html_func_news);
 }
+
+if (window.articles) {
+  vkApi('#енот', html_func_news);
+}
+
+if (window.shares) {
+  vkApi('#приз', html_func_news);
+}

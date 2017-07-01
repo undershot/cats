@@ -1,7 +1,7 @@
 
 <?php 
 /*
- Template Name: News page
+ Template Name: Articles page
 */?><!DOCTYPE html>
 <html lang="RU-ru">
   <head>
@@ -117,7 +117,7 @@
         ?>
       </div>
     </section>
-    <script>window.news = true;</script>
+    <script>window.articles = true;</script>
     <script src="<?php echo get_template_directory_uri();?>/libs/jquery/dist/jquery.min.js"></script>
     <script src="<?php echo get_template_directory_uri();?>/libs/fancybox/source/jquery.fancybox.pack.js"></script>
     <script src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
